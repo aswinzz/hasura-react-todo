@@ -12,10 +12,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar, Button,NavItem,Nav } from 'react-bootstrap';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import GetTodos from "components/GetTodos";
+import GetCompletedTodos from "components/GetCompletedTodos";
 import { onError } from "apollo-link-error";
 export var client;
 
@@ -66,18 +67,15 @@ export default class HomePage extends React.PureComponent {
     const { isAuthenticated } = this.props.auth;
     return (
       <div>
-        <Navbar fluid>
-          <Navbar.Header>
+        <Navbar inverse pullRight fluid>
+          <Navbar.Header pullRight>
             <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
+              <a href="#">Hasura Todo</a>
             </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
+            </Navbar.Header>
+            <Navbar.Collapse>
+            <Nav pullRight>
+            <NavItem eventKey={1}>
             {
               !isAuthenticated() && (
                   <Button
@@ -89,6 +87,8 @@ export default class HomePage extends React.PureComponent {
                   </Button>
                 )
             }
+            </NavItem>
+            <NavItem eventKey={2}>
             {
               isAuthenticated() && (
                   <Button
@@ -100,13 +100,27 @@ export default class HomePage extends React.PureComponent {
                   </Button>
                 )
             }
-          </Navbar.Header>
+            </NavItem>
+            </Nav>
+          </Navbar.Collapse>  
+          
         </Navbar>
         <div className="container">
+        <h2 style={{textAlign:'center'}}>Incomplete Todos</h2>
           {
             isAuthenticated() && (
               <ApolloProvider client={client}>
                 <GetTodos />
+              </ApolloProvider>
+            )
+          }
+        </div>
+        <div className="container">
+        <h2 style={{textAlign:'center'}}>Completed Todos</h2>
+          {
+            isAuthenticated() && (
+              <ApolloProvider client={client}>
+                <GetCompletedTodos />
               </ApolloProvider>
             )
           }

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { getIncompleteTodos } from './query';
+import { getCompleteTodos } from './query';
 import MarkTodo from './MarkTodo';
 import DeleteTodo from './DeleteTodo';
 import AddTodo from './AddTodo';
 import { ListGroup, ListGroupItem, ButtonGroup, Grid, Row, Col } from 'react-bootstrap';
 
-const GetTodos = () => (
-    <Query query={getIncompleteTodos}>
+const GetCompletedTodos = () => (
+    <Query query={getCompleteTodos}>
         {({ loading, error, data }) => {
-            if (loading) return (<h2 style={{textAlign:'center'}}>Loading...</h2>);
+            if (loading) return (<h2></h2>);
             // if (error) return (`Error! fetching todos.`);
             if (data.todos.length === 0) return (
                 <div>
-                    <h3>No Todos Created Yet</h3>
+                    <h3>No completed todos</h3>
                     <AddTodo />
                 </div>
             );
@@ -28,17 +28,11 @@ const GetTodos = () => (
 
                                         <ListGroupItem>
                                             <ButtonGroup className="pull-right">
-                                                <MarkTodo todo_id={todo.todo_id} />
                                                 <DeleteTodo todo_id={todo.todo_id} />
                                             </ButtonGroup>
                                             <h4>{count = count + 1}. {todo.todo_text}</h4>
                                         </ListGroupItem>
                                     ))}
-                                </ListGroup>
-                                <ListGroup>
-                                    <ListGroupItem>
-                                        <AddTodo />
-                                    </ListGroupItem>
                                 </ListGroup>
                             </Col>
                         </Row>
@@ -49,4 +43,4 @@ const GetTodos = () => (
     </Query>
 );
 
-export default GetTodos;
+export default GetCompletedTodos;

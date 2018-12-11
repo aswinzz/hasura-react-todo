@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import { deleteTodo, getIncompleteTodos, getAllTodos } from './query';
+import { deleteTodo, getIncompleteTodos,getCompleteTodos, getAllTodos } from './query';
 import { Button } from 'react-bootstrap';
 
 class DeleteTodo extends Component {
@@ -11,7 +11,7 @@ class DeleteTodo extends Component {
     }
 
     deletetodo(delete_todos) {
-        delete_todos({ variables: this.props, refetchQueries: [{ query: getIncompleteTodos }, { query: getAllTodos }] });
+        delete_todos({ variables: this.props, refetchQueries: [{ query: getIncompleteTodos },{ query: getCompleteTodos }, { query: getAllTodos }] });
     }
 
     render() {

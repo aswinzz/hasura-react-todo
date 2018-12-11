@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { markTodo, getIncompleteTodos, getAllTodos } from './query';
+import { markTodo, getIncompleteTodos,getCompleteTodos, getAllTodos } from './query';
 import { Mutation } from 'react-apollo';
 import { Button } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ class MarkTodo extends Component {
     }
 
     marktodo_completed(update_todos) {
-        update_todos({ variables: this.props, refetchQueries: [{ query: getIncompleteTodos }, { query: getAllTodos }] })
+        update_todos({ variables: this.props, refetchQueries: [{ query: getIncompleteTodos },{ query: getCompleteTodos }, { query: getAllTodos }] })
     }
 
     render() {
