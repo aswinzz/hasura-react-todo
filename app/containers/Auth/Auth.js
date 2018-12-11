@@ -41,7 +41,7 @@ export default class Auth {
     localStorage.setItem('expires_at', expiresAt);
     localStorage.setItem('sub', authResult.idTokenPayload.sub);
     // navigate to the home route
-    history.replace('/manage');
+    history.replace('/');
   }
 
   logout() {
@@ -51,7 +51,7 @@ export default class Auth {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('sub');
     // navigate to the home route
-    history.replace('/manage');
+    history.replace('/');
   }
 
   isAuthenticated() {

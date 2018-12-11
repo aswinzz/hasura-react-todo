@@ -106,20 +106,35 @@ export default class HomePage extends React.PureComponent {
           
         </Navbar>
         <div className="container">
-        <h2 style={{textAlign:'center'}}>Incomplete Todos</h2>
+          {
+            !isAuthenticated() && (
+              <div>
+              <h2 style={{textAlign:'center'}}>Please login to continue <Button
+                    bsStyle="primary"
+                    className="btn-margin center"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </Button></h2>
+              
+              </div>
+            )
+          }
           {
             isAuthenticated() && (
               <ApolloProvider client={client}>
+              <h2 style={{textAlign:'center'}}>Incomplete Todos</h2>
                 <GetTodos />
               </ApolloProvider>
             )
           }
         </div>
         <div className="container">
-        <h2 style={{textAlign:'center'}}>Completed Todos</h2>
+        
           {
             isAuthenticated() && (
               <ApolloProvider client={client}>
+              <h2 style={{textAlign:'center'}}>Completed Todos</h2>
                 <GetCompletedTodos />
               </ApolloProvider>
             )

@@ -13,3 +13,6 @@ This is a simple todo app built using react and hasura.
 - React ([React-Boilerplate](https://github.com/react-boilerplate/react-boilerplate))
 - Hasura
 - Auth0
+
+## How to make?
+Read this blog by @Anupam-dagar [Building a React Todo App with Hasura GraphQL Engine](https://hackernoon.com/building-a-react-todo-app-with-hasura-graphql-engine-511b703a7ef)
