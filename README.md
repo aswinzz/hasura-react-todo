@@ -21,4 +21,4 @@ This is a simple todo app built using react and hasura.
 ![3](screenshots/scr3.PNG)
 
 ## How to make?
-Read this blog by [Anupam-dagar](https://github.com/Anupam-dagar) [Building a React Todo App with Hasura GraphQL Engine](https://hackernoon.com/building-a-react-todo-app-with-hasura-graphql-engine-511b703a7ef)
+Read [this](https://hackernoon.com/building-a-react-todo-app-with-hasura-graphql-engine-511b703a7ef) blog by [Anupam-dagar](https://github.com/Anupam-dagar)
