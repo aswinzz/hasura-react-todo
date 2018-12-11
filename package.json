@@ -69,6 +69,7 @@
     "express": "4.16.4",
     "fontfaceobserver": "2.0.13",
     "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
     "grommet": "^2.2.0",
     "history": "4.7.2",
     "hoist-non-react-statics": "3.0.1",

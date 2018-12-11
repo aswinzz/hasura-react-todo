@@ -13,9 +13,34 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { Navbar, Button } from 'react-bootstrap';
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import GetTodos from "components/GetTodos";
+import { onError } from "apollo-link-error";
+export var client;
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    const ACCESS_TOKEN = localStorage.getItem('access_token');
+    const errorLink = onError(({ graphQLErrors }) => {
+      if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
+    })
+    
+    client = new ApolloClient({
+      uri: "https://my-react-hasura-app.herokuapp.com/v1alpha1/graphql",
+      headers: {
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+      },
+      onError: ({ networkError, graphQLErrors }) => {
+        console.log('graphQLErrors', graphQLErrors)
+        console.log('networkError', networkError)
+      }
+    });
+  }
+
+
   goTo(route) {
     this.props.history.replace(`/${route}`)
   }
@@ -77,6 +102,15 @@ export default class HomePage extends React.PureComponent {
             }
           </Navbar.Header>
         </Navbar>
+        <div className="container">
+          {
+            isAuthenticated() && (
+              <ApolloProvider client={client}>
+                <GetTodos />
+              </ApolloProvider>
+            )
+          }
+        </div>
       </div>
     );
   }
