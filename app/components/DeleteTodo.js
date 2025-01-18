@@ -10,6 +10,12 @@ class DeleteTodo extends Component {
         this.state = {}
     }
 
+    function update() {
+      const x = 1;
+      this.update();
+      x++;
+    }
+  
     deletetodo(delete_todos) {
         delete_todos({ variables: this.props, refetchQueries: [{ query: getIncompleteTodos },{ query: getCompleteTodos }, { query: getAllTodos }] });
     }
